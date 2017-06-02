@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Schema name="webpvuv_schema">
+  <Cube name="myproject_pvuv_cube">
+    <!-- 事实表(fact table) -->
+    <Table name="WEB_ACCESS_FACT_TBL"/>
+<Dimension name="FactDim">
+      <Hierarchy hasAll="false">
+        <Table name="WEB_ACCESS_FACT_TBL"/>
+        <Level name="时间" table="WEB_ACCESS_FACT_TBL" column="DAY"/>
+        <Level name="省份ID" table="WEB_ACCESS_FACT_TBL" column="REGIONID"/>
+        <Level name="城市ID" table="WEB_ACCESS_FACT_TBL" column="CITYID"/>
+        <Level name="网站ID" table="WEB_ACCESS_FACT_TBL" column="CITYID"/>
+        <Level name="操作系统" table="WEB_ACCESS_FACT_TBL" column="OS"/>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="PV数" column="PV" datatype="Integer" aggregator="sum"/>
+    <Measure name="UV数" column="COOKIEID" datatype="Integer" aggregator="distinct-count"/>
+  </Cube>
+</Schema>
